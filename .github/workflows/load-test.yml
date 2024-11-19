@@ -1,32 +1,44 @@
-name: K6 load test
+name: K6 Load Test
+
 on: [push]
+
 permissions:
   contents: write
+
 jobs:
   build: 
-    name: K6 load test
+    name: K6 Load Test
     runs-on: ubuntu-latest
-    steps:
-      - name: step 1 - checkout
-        uses: actions/checkout@v3
 
-      - name: step 2 - run k6 load test
-        uses: grafana/k6-action@v0.2.0
+    steps:
+      # Passo 1: Checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3 # Compatível com Node.js 20
+
+      # Passo 2: Executar o K6 load test
+      - name: Run K6 Load Test
+        uses: grafana/k6-action@v0.2.0 # Compatível com Node.js 20
         with: 
           filename: scripts/test.js
 
-      - run: ls & mkdir report & mv index.html report
-      
-      - name: step 3 - upload artifact
-        uses: actions/upload-artifact@v3
+      # Passo 3: Organizar o relatório gerado
+      - name: Prepare Report
+        run: |
+          ls
+          mkdir -p report
+          mv index.html report
+
+      # Passo 4: Fazer upload do relatório como artefato
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3 # Compatível com Node.js 20
         with: 
-          name: relatorio de testes de performance
+          name: relatorio-de-testes-de-performance
           path: report
-      
-      - name: step 4 - publish report
-        uses: peaceiris/actions-gh-pages@v3
+
+      # Passo 5: Publicar o relatório no GitHub Pages
+      - name: Publish Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3 # Atualizado e compatível com Node.js 20
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: report
-        
