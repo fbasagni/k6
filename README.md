@@ -3,6 +3,8 @@
 [![k6](https://img.shields.io/badge/k6-Performance%20Testing-blueviolet?style=flat&logo=k6)](https://k6.io)  
 Este repositório foi criado para gerenciar scripts de testes de performance utilizando o [K6](https://k6.io), uma ferramenta poderosa e de código aberto, para garantir a confiabilidade, escalabilidade e eficiência de sistemas e APIs. 🚀
 
+URL Dashboard gerado pós execução no Actions : https://fbasagni.github.io/k6/
+
 ---
 
 ## 📋 **Descrição**
